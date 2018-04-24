@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    buildToolsVersion "24.0.2"
+    buildToolsVersion "26.0.3"
 
     defaultConfig {
         applicationId "xyz.sahildave.flavoredlibrary"
@@ -14,14 +14,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+//    flavorSelection 'dimension_name', 'flavor_name'
+    // Specifies a flavor dimension.
+    flavorDimensions "appf"
     productFlavors {
         app1521 {
+            dimension "appf"
             minSdkVersion 15
             targetSdkVersion 21
             compileSdkVersion 21
             applicationId "xyz.sahildave.flavoredlibrary.app1521"
         }
         app1524 {
+            dimension "appf"
             minSdkVersion 15
             targetSdkVersion 24
             compileSdkVersion 24
@@ -30,15 +35,11 @@ android {
     }
 }
 
-configurations {
-    app1521DebugCompile
-    app1524DebugCompile
-}
-
 dependencies {
 //    compile 'com.android.support:appcompat-v7:24.1.0'
-    app1521DebugCompile project(path: ':mylibrary', configuration: 'sdk1521Debug')
-    app1524DebugCompile project(path: ':mylibrary', configuration: 'sdk1524Debug')
-    app1521DebugCompile 'com.android.support:appcompat-v7:21.0.3'
-    app1524DebugCompile 'com.android.support:appcompat-v7:24.2.0'
+//    app1521DebugCompile project(path: ':mylibrary', configuration: 'sdk1521Debug')
+    implementation project(path: ':mylibrary')
+//    app1524DebugCompile project(path: ':mylibrary', configuration: 'sdk1524Debug')
+    implementation 'com.android.support:appcompat-v7:21.0.3'
+    implementation 'com.android.support:appcompat-v7:24.2.0'
 }

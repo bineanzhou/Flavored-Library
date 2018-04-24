@@ -1,21 +1,35 @@
 apply plugin: 'com.android.library'
 
 android {
-    buildToolsVersion "24.0.2"
+    buildToolsVersion "26.0.3"
 
-    publishNonDefault true
+//    publishNonDefault true
 
     defaultConfig {
         versionCode 1
         versionName "1.0"
     }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+        debug{
+
+        }
+    }
+
+    // Specifies a flavor dimension.
+    flavorDimensions "appf"
     productFlavors {
-        sdk1521 {
+        app1521 {
+            dimension "appf"
             minSdkVersion 15
             targetSdkVersion 21
             compileSdkVersion 21
         }
-        sdk1524 {
+        app1524 {
+            dimension "appf"
             minSdkVersion 15
             targetSdkVersion 24
             compileSdkVersion 24
@@ -25,6 +39,6 @@ android {
 
 dependencies {
 //    compile 'com.android.support:appcompat-v7:24.2.1'
-    sdk1524Compile 'com.android.support:appcompat-v7:24.2.1'
-    sdk1521Compile 'com.android.support:appcompat-v7:21.0.3'
+    implementation 'com.android.support:appcompat-v7:24.2.0'
+    implementation 'com.android.support:appcompat-v7:21.0.3'
 }
