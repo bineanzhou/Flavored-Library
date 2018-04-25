@@ -16,30 +16,51 @@ android {
     }
 //    flavorSelection 'dimension_name', 'flavor_name'
     // Specifies a flavor dimension.
-    flavorDimensions "appf"
+    flavorDimensions ("apiver")
     productFlavors {
         app1521 {
-            dimension "appf"
+            dimension "apiver"
             minSdkVersion 15
             targetSdkVersion 21
             compileSdkVersion 21
             applicationId "xyz.sahildave.flavoredlibrary.app1521"
         }
         app1524 {
-            dimension "appf"
+            dimension "apiver"
             minSdkVersion 15
             targetSdkVersion 24
             compileSdkVersion 24
             applicationId "xyz.sahildave.flavoredlibrary.app1524"
         }
     }
+
+}
+repositories{
+    flatDir {
+        dirs './libs'
+    }
 }
 
+configurations{
+    app1521DebugImplementation
+    app1521ReleaseImplementation
+
+    app1524DebugImplementation
+    app1524ReleaseImplementation
+}
 dependencies {
+//    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 //    compile 'com.android.support:appcompat-v7:24.1.0'
 //    app1521DebugCompile project(path: ':mylibrary', configuration: 'sdk1521Debug')
-    implementation project(path: ':mylibrary')
+//    implementation project(path: ':mylibrary')
 //    app1524DebugCompile project(path: ':mylibrary', configuration: 'sdk1524Debug')
+//    debugImplementation(name: 'mylibrary-app1521-free-debug', ext: 'aar', configuration:'App1521FreeDebug')
+//    debugImplementation(name: 'mylibrary-app1521-vip-debug', ext: 'aar', configuration:'app1521VipDebug')
+    app1521DebugImplementation(name: 'mylibrary-app1521-debug', ext: 'aar')
+    app1521ReleaseImplementation(name: 'mylibrary-app1521-release', ext: 'aar')
+
+    app1524DebugImplementation(name: 'mylibrary-app1524-debug', ext: 'aar')
+    app1524ReleaseImplementation(name: 'mylibrary-app1524-release', ext: 'aar')
     implementation 'com.android.support:appcompat-v7:21.0.3'
     implementation 'com.android.support:appcompat-v7:24.2.0'
 }

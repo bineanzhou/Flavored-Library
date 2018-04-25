@@ -3,8 +3,6 @@ apply plugin: 'com.android.library'
 android {
     buildToolsVersion "26.0.3"
 
-//    publishNonDefault true
-
     defaultConfig {
         versionCode 1
         versionName "1.0"
@@ -18,18 +16,19 @@ android {
 
         }
     }
-
+    publishNonDefault true //设置没有默认发布类型
     // Specifies a flavor dimension.
-    flavorDimensions "appf"
+    flavorDimensions ("apiver")
     productFlavors {
+
         app1521 {
-            dimension "appf"
+            dimension "apiver"
             minSdkVersion 15
             targetSdkVersion 21
             compileSdkVersion 21
         }
         app1524 {
-            dimension "appf"
+            dimension "apiver"
             minSdkVersion 15
             targetSdkVersion 24
             compileSdkVersion 24
